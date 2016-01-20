@@ -20,8 +20,7 @@ class NoteSQLHelper(context: Context) : SQLiteOpenHelper(context, NoteSQLHelper.
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(
-                "create table $TABLE_NAME ($COLUMN_ID integer primary key, $COLUMN_TITLE text, $COLUMN_NOTE text)")
+        db.execSQL("create table $TABLE_NAME ($COLUMN_ID integer primary key, $COLUMN_TITLE text, $COLUMN_NOTE text)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -35,7 +34,6 @@ class NoteSQLHelper(context: Context) : SQLiteOpenHelper(context, NoteSQLHelper.
         contentValues.put(COLUMN_TITLE, title)
         contentValues.put(COLUMN_NOTE, note)
         db.insert(TABLE_NAME, null, contentValues)
-
         Log.e("log", "INSERT")
         return true
     }
