@@ -1,7 +1,7 @@
 package com.example.rafal.databasesuperapp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
 class NoteActivity : AppCompatActivity() {
 

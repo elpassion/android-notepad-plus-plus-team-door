@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.TextView
 import android.widget.TwoLineListItem
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by kit on 20/01/16.
