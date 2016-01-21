@@ -5,20 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 import android.widget.TwoLineListItem
 import java.util.*
 
-/**
- * Created by kit on 20/01/16.
- */
 class NoteAdapter (val context: Context, val notes:ArrayList<Note>) : BaseAdapter() {
 
+    companion object {
+        val USED_VIEW = android.R.layout.simple_list_item_2
+        val FIELD_VIEW_1 = android.R.id.text1
+        val FIELD_VIEW_2 = android.R.id.text2
+    }
+
     override fun getCount(): Int {
-        return notes!!.size
+        return notes.size
     }
 
     override fun getItem(position: Int): Any {
-        return notes!![position]
+        return notes[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -26,26 +30,22 @@ class NoteAdapter (val context: Context, val notes:ArrayList<Note>) : BaseAdapte
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-
-
-        // todo co za burdel
-        val twoLineListItem: TwoLineListItem
-
+        var view : View
         if (convertView == null) {
-            val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            twoLineListItem = inflater.inflate(
-                    android.R.layout.simple_list_item_2, null) as TwoLineListItem
+            view = LayoutInflater.from(parent.context).inflate(USED_VIEW, parent, false)
         } else {
-            twoLineListItem = convertView as TwoLineListItem
+            view = convertView
         }
-
-        val text1 = twoLineListItem.text1
-        val text2 = twoLineListItem.text2
-
-        text1.text = notes!![position].title
-        text2.text = notes[position].note
-
-        return twoLineListItem
+        bindItem(position, view)
+        return view
     }
+
+    private fun bindItem(position : Int, view : View) {
+        val title = view.findViewById(FIELD_VIEW_1) as TextView
+        val note = view.findViewById(FIELD_VIEW_2) as TextView
+        title.text = notes!![position].title
+        note.text = notes[position].note
+    }
+
 
 }
